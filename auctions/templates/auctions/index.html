@@ -1,7 +1,22 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2>Active Listings</h2>
+<h2>Active Listings</h2>
 
-    TODO
+<div class="list">
+    {% for listing in listings %}
+    <h3>{{listing.itemName}} - 
+        {% if bids.highestBidAmount == 0 %} {{listing.min}} {% else %}
+        {{bids.highestBidAmount}}{% endif %}
+    </h3>
+    <h5>{{listing.description}}</h5>
+    {% if listing.image %}
+    <img src="{{ listing.image.url }}" alt="Listing Photo" style="width:200px;">
+    {% else %}
+    <p>No image available</p>
+    {% endif %}
+    {% endfor %}
+</div>
+
+
 {% endblock %}
